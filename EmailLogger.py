@@ -3,7 +3,7 @@
 import re
 fileToRead = 'keylog.txt'
 fileToWrite = 'extractedemails.txt'
-delimiterInFile = [',', ';']
+delimiterInFile = [' ', '-', ',', ';']
 def validateEmail(strEmail):
     # .* Zero or more characters of any type. 
     if re.match("([a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`"
