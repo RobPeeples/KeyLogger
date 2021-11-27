@@ -25,7 +25,7 @@ To import the modules required for this script, you must install them first. Thi
 pip install pynput<br />
 pip install python-crontab
 # Commands For Windows
-To begin, click Start, type in "cmd", and click "Run as Administrator". This is nit necessary if you are already using a reverse shell and have administrator access. The syntax for Scheduled Tasks is as follows: <br />
+To begin, click Start, type in "cmd", and click "Run as Administrator". This is not necessary if you are already using a reverse shell and have administrator access. The syntax for Scheduled Tasks is as follows: <br />
 
 SCHTASKS /CREATE /SC DAILY /TN "FOLDERPATH\TASKNAME" /TR "C:\SOURCE\FOLDER\APP-OR-SCRIPT" /ST HH:MM
 
